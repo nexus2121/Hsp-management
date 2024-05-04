@@ -1,0 +1,82 @@
+/* Basic styling for the body */
+body {
+    font-family: Arial, sans-serif; /* Use a clean and readable font */
+    background-color: #f5f5f5; /* Light background color for readability */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Center the main title */
+h1 {
+    text-align: center;
+    color: #333; /* Dark color for contrast */
+}
+
+/* Styling for section headers */
+h2 {
+    color: #444;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Basic styling for forms */
+form {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Inputs in forms */
+input {
+    font-size: 1em;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%; /* Make inputs full-width */
+}
+
+/* Form buttons */
+input[type="submit"] {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Hover effect for form buttons */
+input[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Styling for unordered lists */
+ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+}
+
+/* Styling for list items */
+li {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Style for search results section */
+#search-results {
+    margin-top: 20px;
+}
+
+/* Footer styling (if needed) */
+footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.8em;
+    margin-top: 30px;
+}

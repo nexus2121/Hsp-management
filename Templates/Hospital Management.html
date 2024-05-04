@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Management</title>
+    <link rel="stylesheet" href="/static/st.css">
+</head>
+<body>
+    <h1>Hospital Management</h1>
+    
+    <!-- Display list of patients -->
+    <h2>All Patients</h2>
+    <ul>
+        {% for patient in patients %}
+            <li>ID: {{ patient[0] }}, Name: {{ patient[1] }}, Age: {{ patient[2] }}, Gender: {{ patient[3] }}, Condition: {{ patient[4] }}, Admitted: {{ "Yes" if patient[5] else "No" }}</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a new patient -->
+    <h2>Add Patient</h2>
+    <form action="/add" method="post">
+        Name: <input type="text" name="name" required><br>
+        Age: <input type="number" name="age" required><br>
+        Gender: 
+        <select name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+        Condition: <input type="text" name="condition" required><br>
+        Admitted: <input type="checkbox" name="admitted"><br>
+        <input type="submit" value="Add Patient">
+    </form>
+
+    <!-- Update a patient -->
+    <h2>Update Patient</h2>
+    <form action="/update" method="post">
+        ID: <input type="number" name="id" required><br>
+        Name: <input type="text" name="name"><br>
+        Age: <input type="number" name="age"><br>
+        Gender: 
+        <select name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br>
+        Condition: <input type="text" name="condition"><br>
+        Admitted: <input type="checkbox" name="admitted"><br>
+        <input type="submit" value="Update Patient">
+    </form>
+
+    <!-- Delete a patient -->
+    <h2>Delete Patient</h2>
+    <form action="/delete" method="post">
+        ID: <input type="number" name="id" required><br>
+        <input type="submit" value="Delete Patient">
+    </form>
+
+    <!-- Search for patients -->
+    <h2>Search Patients</h2>
+    <form action="/search" method="get">
+        Query: <input type="text" name="query"><br>
+        <input type="submit" value="Search">
+    </form>
+
+    <div id="search-results"></div>
+    
+    <!-- Script to handle search results -->
+    <script>
+        document.querySelector('form[action="/search"]').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch(`/search?query=${document.querySelector('input[name="query"]').value}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById('search-results');
+                    resultsDiv.innerHTML = '';
+                    data.forEach(patient => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `ID: ${patient[0]}, Name: ${patient[1]}, Age: ${patient[2]}, Gender: ${patient[3]}, Condition: ${patient[4]}, Admitted: ${patient[5] ? "Yes" : "No"}`;
+                        resultsDiv.appendChild(listItem);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
